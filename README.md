@@ -1,1 +1,1 @@
-# fotografcinibul
+#kare-code uygulamasıdır.
