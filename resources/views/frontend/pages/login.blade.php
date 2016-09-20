@@ -23,24 +23,46 @@
             <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
                 <div class="login-form">
                     <h3>Giriş <span>Yap</span></h3>
-                    <form role="form">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email adres</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Kayıtlı email adresini gir">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                        {{ csrf_field() }}
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email">E-Mail Adres</label>
+
+                            <div>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" >Şifre</label>
+
+                            <div>
+                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Şifre</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1"
-                                   placeholder="Şifreni gir">
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Beni Hatırla
-                            </label>
+                            <div class="">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember"> Beni Hatırla
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-theme-bg">Giriş Yap</button>
-                        <a href="#" class="btn btn-fb-login"> Kayıt Ol</a>
-                        <a href="#">Şifemi Unuttum</a>
+                        <a href="/register" class="btn btn-fb-login"> Kayıt Ol</a>
+                        <a href="/password/reset">Şifemi Unuttum</a>
                     </form>
                 </div>
             </div>

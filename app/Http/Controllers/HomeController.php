@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -34,5 +36,21 @@ class HomeController extends Controller
     public function giris()
     {
         return view('frontend.pages.login');
+    }
+
+    public function mail()
+    {
+        $user = User::all();
+
+        foreach ($user as $u)
+        {
+            Mail::queue('emails.echo', ['user' => $u], function ($m) use ($u) {
+
+                $m->from('hello@app.com', 'Your Application');
+
+                $m->to($u->email, $u->name)->subject('Your Reminder!');
+            });
+        }
+
     }
 }
