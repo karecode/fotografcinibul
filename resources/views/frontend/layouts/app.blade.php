@@ -19,8 +19,6 @@
     <link href="/frontend/css/animate.css" rel="stylesheet" type="text/css" media="screen">
 
 
-
-
     <!--owl carousel css-->
     <link href="/frontend/css/owl.carousel.css" rel="stylesheet" type="text/css" media="screen">
     <link href="/frontend/css/owl.theme.css" rel="stylesheet" type="text/css" media="screen">
@@ -28,8 +26,8 @@
     <link href="/frontend/css/yamm.css" rel="stylesheet" type="text/css">
     <!--popups css-->
     <link href="/frontend/css/magnific-popup.css" rel="stylesheet" type="text/css">
-    @yield('css')
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+@yield('css')
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -70,13 +68,26 @@
                 <ul class="list-inline top-dark-right">
                     <li class="hidden-sm hidden-xs"><i class="fa fa-envelope"></i> Support@mail.com</li>
                     <li class="hidden-sm hidden-xs"><i class="fa fa-phone"></i> +01 1800 453 7678</li>
-                    <li><a href="#"><i class="fa fa-lock"></i> Login</a></li>
-                    <li><a href="#"><i class="fa fa-user"></i> Sign Up</a></li>
+                    @if(Auth::guest())
+                        <li><a href="/login"><i class="fa fa-lock"></i> Giriş Yap</a></li>
+                        <li><a href="/register"><i class="fa fa-user"></i> Kayıt Ol</a></li>
+                    @else
+                        <li><a href="{{ url('/logout') }}"
+                               onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();"><i
+                                        class="fa fa-user"></i> Çıkış Yap</a>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+
+                    @endif
                     <li><a class="topbar-icons" href="#"><span><i class="fa fa-search top-search"></i></span></a></li>
                 </ul>
                 <div class="search">
                     <form role="form">
-                        <input type="text" class="form-control" autocomplete="off" placeholder="Write something and press enter">
+                        <input type="text" class="form-control" autocomplete="off"
+                               placeholder="Write something and press enter">
                         <span class="search-close"><i class="fa fa-times"></i></span>
                     </form>
                 </div>
@@ -114,32 +125,42 @@
                             </ul>
                         </li>
                         <li class="dropdown-submenu">
-                            <a tabindex="-1" href="#">Revolution 5  <span class="label new-label">New</span></a>
+                            <a tabindex="-1" href="#">Revolution 5 <span class="label new-label">New</span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="r5-classic.html">Carousel classic</a></li>
                                 <li><a href="r5-gym.html">Slider Gym</a></li>
                             </ul>
                         </li>
                         <li class="dropdown-submenu">
-                            <a tabindex="-1" href="#">Themes (12+)  <span class="label new-label">New</span></a>
+                            <a tabindex="-1" href="#">Themes (12+) <span class="label new-label">New</span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="../default-template/index.html" target="_blank">Default Template</a></li>
                                 <li><a href="../real-estate/index.html" target="_blank">Real Estate</a></li>
                                 <li><a href="../medical/index.html" target="_blank">Medical Template</a></li>
                                 <li><a href="../e-commerce/index.html" target="_blank">E-commerce</a></li>
-                                <li><a href="../assan-blog/index.html" target="_blank">Blog Template</a></li><li><a href="../assan-education/index.html" target="_blank">Education  Template</a></li>
+                                <li><a href="../assan-blog/index.html" target="_blank">Blog Template</a></li>
+                                <li><a href="../assan-education/index.html" target="_blank">Education Template</a></li>
                                 <li><a href="../one-page/index.html" target="_blank">One page light</a></li>
-                                <li><a href="../one-page/one-page-dark.html" target="_blank">One page Dark</a></li><li><a href="../assan-personal-portfolio/index.html" target="_blank">One page Personal</a></li>
-                                <li><a href="../restaurant/index.html" target="_blank">Restaurant One page light</a></li>
-                                <li><a href="../restaurant/restaurant-one-page-dark.html" target="_blank">Restaurant One page Dark</a></li>
+                                <li><a href="../one-page/one-page-dark.html" target="_blank">One page Dark</a></li>
+                                <li><a href="../assan-personal-portfolio/index.html" target="_blank">One page
+                                        Personal</a></li>
+                                <li><a href="../restaurant/index.html" target="_blank">Restaurant One page light</a>
+                                </li>
+                                <li><a href="../restaurant/restaurant-one-page-dark.html" target="_blank">Restaurant One
+                                        page Dark</a></li>
                                 <li><a href="../app-landing/index.html" target="_blank">App landing - I-phone</a></li>
-                                <li><a href="../app-landing/index-android.html" target="_blank">App landing - Android</a></li>
-                                <li><a href="../landing-page/index.html" target="_blank">Landing page <span class="label new-label">New</span></a></li>
-                                <li><a href="../minimal-portfolio/index.html" target="_blank">Minimal Portfolio <span class="label new-label">New</span></a></li>
+                                <li><a href="../app-landing/index-android.html" target="_blank">App landing -
+                                        Android</a></li>
+                                <li><a href="../landing-page/index.html" target="_blank">Landing page <span
+                                                class="label new-label">New</span></a></li>
+                                <li><a href="../minimal-portfolio/index.html" target="_blank">Minimal Portfolio <span
+                                                class="label new-label">New</span></a></li>
                             </ul>
                         </li>
                         <li><a href="home-parallax.html">Home - Parallax</a></li>
-                        <li><a href="home-video.html">Home -Youtube Video</a></li><li><a href="home-self-video.html">Home - Video(Self-hosted) <span class="label new-label">New</span></a></li>
+                        <li><a href="home-video.html">Home -Youtube Video</a></li>
+                        <li><a href="home-self-video.html">Home - Video(Self-hosted) <span
+                                        class="label new-label">New</span></a></li>
                         <li><a href="home-boxed.html">Home - Boxed</a></li>
                         <li><a href="home-construction.html">Home - Construction</a></li>
                         <li><a href="home-portfolio.html">Home - Portfolio</a></li>
@@ -161,7 +182,8 @@
                 </li>
                 <!--menu home li end here-->
                 <li class="dropdown ">
-                    <a href="#" class="dropdown-toggle " data-toggle="dropdown">Portfolio <i class="fa fa-angle-down"></i></a>
+                    <a href="#" class="dropdown-toggle " data-toggle="dropdown">Portfolio <i
+                                class="fa fa-angle-down"></i></a>
                     <ul class="dropdown-menu multi-level" role="menu">
                         <li class="dropdown-submenu">
                             <a tabindex="-1" href="#">Cube Portfolio </a>
@@ -241,7 +263,8 @@
                 </li>
                 <!--menu blog li end here-->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down"></i></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <i
+                                class="fa fa-angle-down"></i></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="about.html">About</a></li>
                         <li><a href="me.html">About - Me</a></li>
@@ -269,63 +292,11 @@
                 </li>
                 <!--menu pages li end here-->
 
-                <li class="dropdown active">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Features  <i class="fa fa-angle-down"></i></a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-submenu">
-                            <a tabindex="-1" href="#">Headers </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="index.html">Header 1 - Default</a></li>
-                                <li><a href="header-dark.html">Header 2 - dark </a></li>
-                                <li><a href="header-transparent.html">header 3 - transparent </a></li>
-                                <li><a href="header-center-logo.html">header 4 - Logo center </a></li>
-                                <li><a href="header-side-panel.html">header 5 - Side panel </a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown-submenu">
-                            <a tabindex="-1" href="#">Footers </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="index.html">Footer dark - 1</a></li>
-                                <li><a href="footer-2.html">Footer dark - 2</a></li>
-                                <li><a href="footer-3.html">Footer dark - 3 </a></li>
-                                <li><a href="footer-light-1.html">Footer Light - 1</a></li>
-                                <li><a href="footer-light-2.html">Footer Light - 2</a></li>
-                                <li><a href="footer-light-3.html">Footer Light - 3 </a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown-submenu">
-                            <a tabindex="-1" href="#">Page Templates </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="full-width.html">Full Width</a></li>
-                                <li><a href="left-sidebar.html">Left Sidebar</a></li>
-                                <li><a href="right-sidebar.html">Right sidebar</a></li>
-                                <li><a href="both-sidebar.html">Both Sidebar</a></li>
-                                <li><a href="both-right-sidebar.html">Both Right sidebar</a></li>
-                                <li><a href="both-left-sidebar.html">Both Left Sidebar</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown-submenu">
-                            <a tabindex="-1" href="#">Coming Soon </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="coming-soon-1.html">Coming soon 1</a></li>
-                                <li><a href="coming-soon-2.html">Coming soon 2</a></li>
-                                <li><a href="coming-soon-3.html">Coming soon 3</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="side-nav.html">side navigation </a></li>
-                        <li><a href="maintenance-page.html">Maintenance page </a></li>
-                        <li><a href="blank.html">Blank Page</a></li>
-                        <li><a href="error.html">Error - 404</a></li>
-                        <li><a href="login-ragister.html">Login / Register</a></li>
-                        <li><a href="login-ragister-classic.html">Login / Register - Classic </a></li>
-                        <li><a href="invoice.html">Invoice</a></li>
-                        <li><a href="site-map.html">Site Map</a></li>
-                    </ul>
-                </li><!--features-->
 
                 <!--mega menu-->
                 <li class="dropdown yamm-fw">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shortcodes  <i class="fa fa-angle-down"></i></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shortcodes <i
+                                class="fa fa-angle-down"></i></a>
                     <ul class="dropdown-menu">
                         <li>
                             <div class="yamm-content">
@@ -335,10 +306,14 @@
                                         <h3 class="heading">Shortcode 1</h3>
                                         <ul class="nav mega-vertical-nav">
 
-                                            <li><a href="typography.html"><i class="fa fa-text-height"></i> Typography</a></li>
-                                            <li><a href="grid-system.html"><i class="fa fa-bars"></i> Grid System</a></li>
-                                            <li><a href="testimonials.html"><i class="fa fa-comment-o"></i> testimonials </a></li>
-                                            <li><a href="tabs-accordian.html"><i class="fa fa-table"></i> tabs &  Accordions </a></li>
+                                            <li><a href="typography.html"><i class="fa fa-text-height"></i>
+                                                    Typography</a></li>
+                                            <li><a href="grid-system.html"><i class="fa fa-bars"></i> Grid System</a>
+                                            </li>
+                                            <li><a href="testimonials.html"><i class="fa fa-comment-o"></i> testimonials
+                                                </a></li>
+                                            <li><a href="tabs-accordian.html"><i class="fa fa-table"></i> tabs &
+                                                    Accordions </a></li>
                                         </ul>
 
                                     </div>
@@ -346,27 +321,35 @@
                                         <h3 class="heading">Shortcode 2 </h3>
                                         <ul class="nav mega-vertical-nav">
                                             <li><a href="buttons.html"><i class="fa fa-cog"></i> Buttons</a></li>
-                                            <li><a href="social-buttons.html"><i class="fa fa-share"></i> Social Buttons</a></li>
+                                            <li><a href="social-buttons.html"><i class="fa fa-share"></i> Social Buttons</a>
+                                            </li>
                                             <li><a href="alerts.html"><i class="fa fa-bell"></i> Alerts </a></li>
-                                            <li><a href="other-elements.html"><i class="fa fa-cogs"></i> Other Elements </a></li>
+                                            <li><a href="other-elements.html"><i class="fa fa-cogs"></i> Other Elements
+                                                </a></li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-3">
                                         <h3 class="heading">Shortcode 3</h3>
                                         <ul class="nav mega-vertical-nav">
-                                            <li><a href="font-awesome.html"><i class="fa fa-flag"></i> Font Awesome icons</a></li>
+                                            <li><a href="font-awesome.html"><i class="fa fa-flag"></i> Font Awesome
+                                                    icons</a></li>
                                             <li><a href="pe-icons.html"><i class="pe-7s-like"></i> Pe icons</a></li>
-                                            <li><a href="carousel-shortcodes.html"><i class="fa fa-sliders"></i> Carousel Sliders </a></li>
+                                            <li><a href="carousel-shortcodes.html"><i class="fa fa-sliders"></i>
+                                                    Carousel Sliders </a></li>
                                             <li><a href="tables.html"><i class="fa fa-table"></i> Tables </a></li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-3">
                                         <h3 class="heading">Shortcode 4</h3>
                                         <ul class="nav mega-vertical-nav">
-                                            <li><a href="pricing-tables.html"><i class="fa fa-usd"></i> Pricing tables</a></li>
-                                            <li><a href="videos.html"><i class="fa fa-image"></i> Responsive videos</a></li>
-                                            <li><a href="cta.html"><i class="fa fa-map-pin"></i> call to cations </a></li>
-                                            <li><a href="maps.html"><i class="fa fa-map-marker"></i> Google maps </a></li>
+                                            <li><a href="pricing-tables.html"><i class="fa fa-usd"></i> Pricing
+                                                    tables</a></li>
+                                            <li><a href="videos.html"><i class="fa fa-image"></i> Responsive videos</a>
+                                            </li>
+                                            <li><a href="cta.html"><i class="fa fa-map-pin"></i> call to cations </a>
+                                            </li>
+                                            <li><a href="maps.html"><i class="fa fa-map-marker"></i> Google maps </a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -376,40 +359,116 @@
                 </li> <!--menu Features li end here-->
                 <!--mega menu end-->
 
-                <!--                        <li class="dropdown">
-                                            <a href="#" class=" dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lock"></i> Sign In</a>
-                                            <div class="dropdown-menu dropdown-menu-right dropdown-login-box animated fadeInUp">
-                                                <form role="form">
-                                                    <h4>Signin</h4>
 
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                                            <input type="text" class="form-control" placeholder="Username">
-                                                        </div>
-                                                        <br>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                                            <input type="password" class="form-control" placeholder="Password">
-                                                        </div>
-                                                        <div class="checkbox pull-left">
-                                                            <label>
-                                                                <input type="checkbox"> Remember me
-                                                            </label>
-                                                        </div>
-                                                        <a class="btn btn-theme-bg pull-right">Login</a>
-                                                                                                <button type="submit" class="btn btn-theme pull-right">Login</button>
-                                                        <div class="clearfix"></div>
-                                                        <hr>
-                                                        <p>Don't have an account! <a href="#">Register Now</a></p>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </li> menu login li end here-->
+                @if(\Illuminate\Support\Facades\Auth::check())
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle"
+                           data-toggle="dropdown">{{\Illuminate\Support\Facades\Auth::user()->fullname}} <i
+                                    class="fa fa-angle-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-submenu">
+                                <a tabindex="-1" href="#">Headers </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="index.html">Header 1 - Default</a></li>
+                                    <li><a href="header-dark.html">Header 2 - dark </a></li>
+                                    <li><a href="header-transparent.html">header 3 - transparent </a></li>
+                                    <li><a href="header-center-logo.html">header 4 - Logo center </a></li>
+                                    <li><a href="header-side-panel.html">header 5 - Side panel </a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a tabindex="-1" href="#">Footers </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="index.html">Footer dark - 1</a></li>
+                                    <li><a href="footer-2.html">Footer dark - 2</a></li>
+                                    <li><a href="footer-3.html">Footer dark - 3 </a></li>
+                                    <li><a href="footer-light-1.html">Footer Light - 1</a></li>
+                                    <li><a href="footer-light-2.html">Footer Light - 2</a></li>
+                                    <li><a href="footer-light-3.html">Footer Light - 3 </a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a tabindex="-1" href="#">Page Templates </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="full-width.html">Full Width</a></li>
+                                    <li><a href="left-sidebar.html">Left Sidebar</a></li>
+                                    <li><a href="right-sidebar.html">Right sidebar</a></li>
+                                    <li><a href="both-sidebar.html">Both Sidebar</a></li>
+                                    <li><a href="both-right-sidebar.html">Both Right sidebar</a></li>
+                                    <li><a href="both-left-sidebar.html">Both Left Sidebar</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a tabindex="-1" href="#">Coming Soon </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="coming-soon-1.html">Coming soon 1</a></li>
+                                    <li><a href="coming-soon-2.html">Coming soon 2</a></li>
+                                    <li><a href="coming-soon-3.html">Coming soon 3</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="side-nav.html">side navigation </a></li>
+                            <li><a href="maintenance-page.html">Maintenance page </a></li>
+                            <li><a href="blank.html">Blank Page</a></li>
+                            <li><a href="error.html">Error - 404</a></li>
+                            <li><a href="login-ragister.html">Login / Register</a></li>
+                            <li><a href="login-ragister-classic.html">Login / Register - Classic </a></li>
+                            <li><a href="invoice.html">Invoice</a></li>
+                            <li><a href="site-map.html">Site Map</a></li>
+                        </ul>
+                    </li><!--features-->
+                @endif
+
+                @if(Auth::guest())
+                    <li class="dropdown">
+                        <a href="#" class=" dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lock"></i> Giriş Yap</a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-login-box animated fadeInUp">
+                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                                {{ csrf_field() }}
+                                <h4>Giriş Yap</h4>
+
+                                <div class="form-group">
+                                    <div class="input-group {{ $errors->has('email') ? ' has-error' : '' }}">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <input id="email" type="email" class="form-control" name="email"
+                                               placeholder="Email Adres"
+                                               value="{{ old('email') }}" required autofocus>
+                                        @if ($errors->has('email'))
+                                            <span class="help-block"><strong>{{ $errors->first('email') }}</strong></span>
+                                        @endif
+                                    </div>
+                                    <br>
+                                    <div class="input-group {{ $errors->has('password') ? ' has-error' : '' }}">
+                                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                        <input id="password" type="password" class="form-control" name="password"
+                                               required placeholder="Şifre">
+                                        @if ($errors->has('password'))
+                                            <span class="help-block"><strong>{{ $errors->first('password') }}</strong></span>
+                                        @endif
+                                    </div>
+
+
+                                    <div class="checkbox pull-left">
+                                        <label>
+                                            <input type="checkbox" name="remember"> Beni Hatırla
+                                        </label>
+                                    </div>
+                                    <button type="submit" class="btn btn-theme-bg pull-right">Giriş Yap</button>
+                                    <div class="clearfix"></div>
+                                    <p><a href="/password/reset">Şifremi Unuttum</a></p>
+                                    <hr>
+                                    <p>Hesabın mı yok? <a href="/register">Hemen Kayıt Ol</a></p>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                @endif
             </ul>
         </div><!--/.nav-collapse -->
     </div><!--container-->
 </div><!--navbar-default-->
+@if($errors->any())
+    <h4>{{$errors->first(1)}}</h4>
+@endif
 @yield('content')
 <div class="divide60"></div>
 <footer id="footer">
@@ -420,7 +479,9 @@
                 <div class="footer-col">
                     <h3>About assan</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lorem quam, adipiscing condimentum tristique vel, eleifend sed turpis. Pellentesque cursus arcu id magna euismod in elementum purus molestie.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lorem quam, adipiscing
+                        condimentum tristique vel, eleifend sed turpis. Pellentesque cursus arcu id magna euismod in
+                        elementum purus molestie.
                     </p>
                     <ul class="list-inline footer-social">
                         <li>
@@ -461,11 +522,13 @@
                     <h3>Contact</h3>
 
                     <ul class="list-unstyled contact">
-                        <li><p><strong><i class="fa fa-map-marker"></i> Address:</strong> vaisahali, jaipur, 302012</p></li>
-                        <li><p><strong><i class="fa fa-envelope"></i> Mail Us:</strong> <a href="#">Support@designmylife.com</a></p></li>
-                        <li> <p><strong><i class="fa fa-phone"></i> Phone:</strong> +91 1800 2345 2132</p></li>
-                        <li> <p><strong><i class="fa fa-print"></i> Fax</strong> 1800 2345 2132</p></li>
-                        <li> <p><strong><i class="fa fa-skype"></i> Skype</strong> assan.856</p></li>
+                        <li><p><strong><i class="fa fa-map-marker"></i> Address:</strong> vaisahali, jaipur, 302012</p>
+                        </li>
+                        <li><p><strong><i class="fa fa-envelope"></i> Mail Us:</strong> <a href="#">Support@designmylife
+                                    .com</a></p></li>
+                        <li><p><strong><i class="fa fa-phone"></i> Phone:</strong> +91 1800 2345 2132</p></li>
+                        <li><p><strong><i class="fa fa-print"></i> Fax</strong> 1800 2345 2132</p></li>
+                        <li><p><strong><i class="fa fa-skype"></i> Skype</strong> assan.856</p></li>
 
                     </ul>
                 </div>
@@ -474,15 +537,24 @@
                 <div class="footer-col">
                     <h3>Featured Work</h3>
                     <ul class="list-inline f2-work">
-                        <li><a href="portfolio-single.html"><img src="img/img-1.jpg" class="img-responsive" alt=""></a></li>
-                        <li><a href="portfolio-single.html"><img src="img/img-2.jpg" class="img-responsive" alt=""></a></li>
-                        <li><a href="portfolio-single.html"><img src="img/img-3.jpg" class="img-responsive" alt=""></a></li>
-                        <li><a href="portfolio-single.html"><img src="img/img-4.jpg" class="img-responsive" alt=""></a></li>
-                        <li><a href="portfolio-single.html"><img src="img/img-5.jpg" class="img-responsive" alt=""></a></li>
-                        <li><a href="portfolio-single.html"><img src="img/img-6.jpg" class="img-responsive" alt=""></a></li>
-                        <li><a href="portfolio-single.html"><img src="img/img-7.jpg" class="img-responsive" alt=""></a></li>
-                        <li><a href="portfolio-single.html"><img src="img/img-8.jpg" class="img-responsive" alt=""></a></li>
-                        <li><a href="portfolio-single.html"><img src="img/img-9.jpg" class="img-responsive" alt=""></a></li>
+                        <li><a href="portfolio-single.html"><img src="img/img-1.jpg" class="img-responsive" alt=""></a>
+                        </li>
+                        <li><a href="portfolio-single.html"><img src="img/img-2.jpg" class="img-responsive" alt=""></a>
+                        </li>
+                        <li><a href="portfolio-single.html"><img src="img/img-3.jpg" class="img-responsive" alt=""></a>
+                        </li>
+                        <li><a href="portfolio-single.html"><img src="img/img-4.jpg" class="img-responsive" alt=""></a>
+                        </li>
+                        <li><a href="portfolio-single.html"><img src="img/img-5.jpg" class="img-responsive" alt=""></a>
+                        </li>
+                        <li><a href="portfolio-single.html"><img src="img/img-6.jpg" class="img-responsive" alt=""></a>
+                        </li>
+                        <li><a href="portfolio-single.html"><img src="img/img-7.jpg" class="img-responsive" alt=""></a>
+                        </li>
+                        <li><a href="portfolio-single.html"><img src="img/img-8.jpg" class="img-responsive" alt=""></a>
+                        </li>
+                        <li><a href="portfolio-single.html"><img src="img/img-9.jpg" class="img-responsive" alt=""></a>
+                        </li>
                     </ul>
                 </div>
             </div><!--footer col-->

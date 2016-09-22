@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -28,15 +28,11 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function anasayfa()
+    public function get_index()
     {
         return view('frontend.pages.anasayfa');
     }
 
-    public function giris()
-    {
-        return view('frontend.pages.login');
-    }
 
     public function mail()
     {
@@ -52,5 +48,10 @@ class HomeController extends Controller
             });
         }
 
+    }
+
+    public function empt()
+    {
+        return view('backend.pages.empty');
     }
 }
