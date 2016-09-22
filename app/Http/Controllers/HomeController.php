@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\User;
+
+
+use Analytics;
+
+use Spatie\Analytics\Period;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -53,5 +58,11 @@ class HomeController extends Controller
     public function empt()
     {
         return view('backend.pages.empty');
+    }
+
+    public function deneme()
+    {
+        $analyticsData = Analytics::fetchVisitorsAndPageViews(Period::days(365));
+        dd($analyticsData);
     }
 }

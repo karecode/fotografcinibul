@@ -181,7 +181,7 @@ return [
          *My service providers
          */
         Barryvdh\Debugbar\ServiceProvider::class,
-
+        Spatie\Analytics\AnalyticsServiceProvider::class,
     ],
 
     /*
@@ -232,6 +232,7 @@ return [
          * My aliases
          */
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Analytics' => Spatie\Analytics\AnalyticsFacade::class,
     ],
 
 ];

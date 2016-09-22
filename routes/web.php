@@ -12,17 +12,15 @@
 */
 
 
-
 Auth::routes();
 Route::get('/', 'HomeController@get_index');
 Route::get('/anasayfa', 'HomeController@get_index');
 Route::get('/mail', 'HomeController@mail');
 Route::get('/home', 'HomeController@index');
+Route::get('/analytics', 'HomeController@deneme');
 
-Route::group(['prefix' => 'admin','middleware'=>'admin'], function () {
-    Route::get('users', function ()    {
-        echo "serhat";
-    });
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/empty', 'HomeController@empt');
+    Route::get('/', 'Admin\AdminController@get_dashboard');
 });
 
