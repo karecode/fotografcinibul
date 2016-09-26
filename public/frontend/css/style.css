@@ -1455,14 +1455,14 @@ Footer light styles
 }
 
 .no-padding.img {
-  background: url(../img/showcase-1.jpg) scroll center no-repeat;
+  background: url(/img/showcase-1.jpg) scroll center no-repeat;
   background-size: cover;
   position: absolute;
   height: 100%;
 }
 
 .no-padding.img-2 {
-  background: url(../img/showcase-2.jpg) scroll center no-repeat;
+  background: url(/img/showcase-2.jpg) scroll center no-repeat;
   background-size: cover;
   position: absolute;
   height: 100%;
@@ -1503,7 +1503,7 @@ Footer light styles
   position: absolute;
   top: 0;
   left: 0;
-  background: url(../img/plus.png) no-repeat center center rgba(0, 0, 0, 0.7);
+  background: url(/img/plus.png) no-repeat center center rgba(0, 0, 0, 0.7);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
   opacity: 0;

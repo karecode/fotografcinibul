@@ -6,22 +6,21 @@
             <div class="col-lg-3">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <span class="label label-success pull-right">Monthly</span>
-                        <h5>Income</h5>
+                        <span class="label label-success pull-right">Haftalık</span>
+                        <h5>Hit Raporu</h5>
                     </div>
                     <div class="ibox-content">
                         <?php $visitors = 0; ?>
                         @foreach($aylik as $a)
                             <?php $visitors += $a->visitors?>
-                            <?php echo $a->date?>
-
                         @endforeach
                         <h1 class="no-margins">{{$visitors}}</h1>
-                        <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
-                        <small>Total income</small>
+
+                        <small>Toplam ziyaretçi</small>
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-3">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
@@ -51,23 +50,35 @@
             <div class="col-lg-3">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <span class="label label-danger pull-right">Low value</span>
-                        <h5>User activity</h5>
+                        <span class="label @if($yeni_kayit_ort>100) label-primary @elseif($yeni_kayit_ort<100) label-danger @else label-info @endif pull-right">Bu Hafta</span>
+                        <h5>Yeni Üye</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">80,600</h1>
-                        <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
-                        <small>In first month</small>
+                        <h1 class="no-margins">{{$yeni_kullanici_sayisi}}</h1>
+                        @if($yeni_kayit_ort>100)
+                            <div class="stat-percent font-bold text-navy">{{$yeni_kayit_ort}}% <i
+                                        class="fa fa-level-up"></i></div>
+                        @elseif($yeni_kayit_ort<100)
+                            <div class="stat-percent font-bold text-danger">{{$yeni_kayit_ort}}% <i
+                                        class="fa fa-level-down"></i></div>
+                        @else
+                            <div class="stat-percent font-bold text-info">{{$yeni_kayit_ort}}% <i
+                                        class="fa "></i></div>
+                        @endif
+
+                        <small>Toplam</small>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-12">
+
+
+            <div class="col-lg-12" style="min-height: 400px;max-height: 250px">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Bar Chart Example
-                            <small>With custom colors.</small>
+                        <h5>Haftalık Hit
+                            <small>Sitenin haftalık hit raporu</small>
                         </h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
@@ -88,67 +99,35 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <div class="flot-chart">
-                            <div class="flot-chart-content" id="flot-bar-chart"></div>
-                        </div>
+                        <div style="height: 300px!important;" id="ct-chart1" class="ct-perfect-fourth"></div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Orders</h5>
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-xs btn-white active">Today</button>
-                                    <button type="button" class="btn btn-xs btn-white">Monthly</button>
-                                    <button type="button" class="btn btn-xs btn-white">Annual</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-                            <div class="row">
-                                <div class="col-lg-9">
-                                    <div class="flot-chart">
-                                        <div class="flot-chart-content" id="flot-dashboard-chart"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <ul class="stat-list">
-                                        <li>
-                                            <h2 class="no-margins">2,346</h2>
-                                            <small>Total orders in period</small>
-                                            <div class="stat-percent">48% <i class="fa fa-level-up text-navy"></i></div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 48%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <h2 class="no-margins ">4,422</h2>
-                                            <small>Orders in last month</small>
-                                            <div class="stat-percent">60% <i class="fa fa-level-down text-navy"></i>
-                                            </div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 60%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <h2 class="no-margins ">9,180</h2>
-                                            <small>Monthly income from orders</small>
-                                            <div class="stat-percent">22% <i class="fa fa-bolt text-navy"></i></div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 22%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
 
+
+            <div class="col-lg-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Kullanıclıarın Kullandığı Web Tarayıcılar</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <canvas id="doughnutChart2"></canvas>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Sayfa Görüntülenme Grafiği</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <canvas id="doughnutChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+
+
 
 
             <div class="row">
@@ -242,8 +221,34 @@
                     </div>
                 </div>
 
-                <div class="col-lg-8">
 
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <h5>Siteye Erişim Haritası <small>(Haftalık)</small></h5>
+                                    <div class="ibox-tools">
+                                        <a class="collapse-link">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </a>
+                                        <a class="close-link">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ibox-content">
+
+                                    <div class="row">
+
+                                        <div class="col-lg-12">
+                                            <div id="world-map" style="height: 300px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="ibox float-e-margins">
@@ -378,349 +383,172 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="ibox float-e-margins">
-                                <div class="ibox-title">
-                                    <h5>Transactions worldwide</h5>
-                                    <div class="ibox-tools">
-                                        <a class="collapse-link">
-                                            <i class="fa fa-chevron-up"></i>
-                                        </a>
-                                        <a class="close-link">
-                                            <i class="fa fa-times"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="ibox-content">
 
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <table class="table table-hover margin bottom">
-                                                <thead>
-                                                <tr>
-                                                    <th style="width: 1%" class="text-center">No.</th>
-                                                    <th>Transaction</th>
-                                                    <th class="text-center">Date</th>
-                                                    <th class="text-center">Amount</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <td class="text-center">1</td>
-                                                    <td> Security doors
-                                                    </td>
-                                                    <td class="text-center small">16 Jun 2014</td>
-                                                    <td class="text-center"><span
-                                                                class="label label-primary">$483.00</span></td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center">2</td>
-                                                    <td> Wardrobes
-                                                    </td>
-                                                    <td class="text-center small">10 Jun 2014</td>
-                                                    <td class="text-center"><span
-                                                                class="label label-primary">$327.00</span></td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center">3</td>
-                                                    <td> Set of tools
-                                                    </td>
-                                                    <td class="text-center small">12 Jun 2014</td>
-                                                    <td class="text-center"><span
-                                                                class="label label-warning">$125.00</span></td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center">4</td>
-                                                    <td> Panoramic pictures</td>
-                                                    <td class="text-center small">22 Jun 2013</td>
-                                                    <td class="text-center"><span
-                                                                class="label label-primary">$344.00</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center">5</td>
-                                                    <td>Phones</td>
-                                                    <td class="text-center small">24 Jun 2013</td>
-                                                    <td class="text-center"><span
-                                                                class="label label-primary">$235.00</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center">6</td>
-                                                    <td>Monitors</td>
-                                                    <td class="text-center small">26 Jun 2013</td>
-                                                    <td class="text-center"><span
-                                                                class="label label-primary">$100.00</span></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div id="world-map" style="height: 300px;"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
 
 
             </div>
         </div>
-    @stop
+    </div>
+@stop
+@section('css')
+    <link href="/backend/css/plugins/chartist/chartist.min.css" rel="stylesheet">
+@stop
+@section('js')
+    <!-- Flot -->
+    <script src="/backend/js/plugins/flot/jquery.flot.js"></script>
+    <script src="/backend/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="/backend/js/plugins/flot/jquery.flot.spline.js"></script>
+    <script src="/backend/js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="/backend/js/plugins/flot/jquery.flot.pie.js"></script>
+    <script src="/backend/js/plugins/flot/jquery.flot.symbol.js"></script>
+    <script src="/backend/js/plugins/flot/jquery.flot.time.js"></script>
 
-    @section('js')
-        <!-- Flot -->
-            <script src="/backend/js/plugins/flot/jquery.flot.js"></script>
-            <script src="/backend/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-            <script src="/backend/js/plugins/flot/jquery.flot.spline.js"></script>
-            <script src="/backend/js/plugins/flot/jquery.flot.resize.js"></script>
-            <script src="/backend/js/plugins/flot/jquery.flot.pie.js"></script>
-            <script src="/backend/js/plugins/flot/jquery.flot.symbol.js"></script>
-            <script src="/backend/js/plugins/flot/jquery.flot.time.js"></script>
-
-            <!-- Peity -->
-            <script src="/backend/js/plugins/peity/jquery.peity.min.js"></script>
-            <script src="/backend/js/demo/peity-demo.js"></script>
-
-
-            <!-- jQuery UI -->
-            <script src="/backend/js/plugins/jquery-ui/jquery-ui.min.js"></script>
-
-            <!-- Jvectormap -->
-            <script src="/backend/js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
-            <script src="/backend/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-
-            <!-- EayPIE -->
-            <script src="/backend/js/plugins/easypiechart/jquery.easypiechart.js"></script>
-
-            <!-- Sparkline -->
-            <script src="/backend/js/plugins/sparkline/jquery.sparkline.min.js"></script>
-
-            <!-- Sparkline demo data  -->
-            <script src="/backend/js/demo/sparkline-demo.js"></script>
-
-            <script>
-                $(document).ready(function () {
-                    $('.chart').easyPieChart({
-                        barColor: '#f8ac59',
-//                scaleColor: false,
-                        scaleLength: 5,
-                        lineWidth: 4,
-                        size: 80
-                    });
-
-                    $('.chart2').easyPieChart({
-                        barColor: '#1c84c6',
-//                scaleColor: false,
-                        scaleLength: 5,
-                        lineWidth: 4,
-                        size: 80
-                    });
-
-                    var data2 = [
-                        [gd(2012, 1, 1), 7], [gd(2012, 1, 2), 6], [gd(2012, 1, 3), 4], [gd(2012, 1, 4), 8],
-                        [gd(2012, 1, 5), 9], [gd(2012, 1, 6), 7], [gd(2012, 1, 7), 5], [gd(2012, 1, 8), 4],
-                        [gd(2012, 1, 9), 7], [gd(2012, 1, 10), 8], [gd(2012, 1, 11), 9], [gd(2012, 1, 12), 6],
-                        [gd(2012, 1, 13), 4], [gd(2012, 1, 14), 5], [gd(2012, 1, 15), 11], [gd(2012, 1, 16), 8],
-                        [gd(2012, 1, 17), 8], [gd(2012, 1, 18), 11], [gd(2012, 1, 19), 11], [gd(2012, 1, 20), 6],
-                        [gd(2012, 1, 21), 6], [gd(2012, 1, 22), 8], [gd(2012, 1, 23), 11], [gd(2012, 1, 24), 13],
-                        [gd(2012, 1, 25), 7], [gd(2012, 1, 26), 9], [gd(2012, 1, 27), 9], [gd(2012, 1, 28), 8],
-                        [gd(2012, 1, 29), 5], [gd(2012, 1, 30), 8], [gd(2012, 1, 31), 25]
-                    ];
-
-                    var data3 = [
-                        [gd(2012, 1, 1), 800], [gd(2012, 1, 2), 500], [gd(2012, 1, 3), 600], [gd(2012, 1, 4), 700],
-                        [gd(2012, 1, 5), 500], [gd(2012, 1, 6), 456], [gd(2012, 1, 7), 800], [gd(2012, 1, 8), 589],
-                        [gd(2012, 1, 9), 467], [gd(2012, 1, 10), 876], [gd(2012, 1, 11), 689], [gd(2012, 1, 12), 700],
-                        [gd(2012, 1, 13), 500], [gd(2012, 1, 14), 600], [gd(2012, 1, 15), 700], [gd(2012, 1, 16), 786],
-                        [gd(2012, 1, 17), 345], [gd(2012, 1, 18), 888], [gd(2012, 1, 19), 888], [gd(2012, 1, 20), 888],
-                        [gd(2012, 1, 21), 987], [gd(2012, 1, 22), 444], [gd(2012, 1, 23), 999], [gd(2012, 1, 24), 567],
-                        [gd(2012, 1, 25), 786], [gd(2012, 1, 26), 666], [gd(2012, 1, 27), 888], [gd(2012, 1, 28), 900],
-                        [gd(2012, 1, 29), 178], [gd(2012, 1, 30), 555], [gd(2012, 1, 31), 993]
-                    ];
+    <!-- Peity -->
+    <script src="/backend/js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="/backend/js/demo/peity-demo.js"></script>
 
 
-                    var dataset = [
-                        {
-                            label: "Number of orders",
-                            data: data3,
-                            color: "#1ab394",
-                            bars: {
-                                show: true,
-                                align: "center",
-                                barWidth: 24 * 60 * 60 * 600,
-                                lineWidth: 0
-                            }
+    <!-- jQuery UI -->
+    <script src="/backend/js/plugins/jquery-ui/jquery-ui.min.js"></script>
 
-                        },
-                        {
-                            label: "Payments",
-                            data: data2,
-                            yaxis: 2,
-                            color: "#1C84C6",
-                            lines: {
-                                lineWidth: 1,
-                                show: true,
-                                fill: true,
-                                fillColor: {
-                                    colors: [{
-                                        opacity: 0.2
-                                    }, {
-                                        opacity: 0.4
-                                    }]
-                                }
-                            },
-                            splines: {
-                                show: false,
-                                tension: 0.6,
-                                lineWidth: 1,
-                                fill: 0.1
-                            },
-                        }
-                    ];
+    <!-- Jvectormap -->
+    <script src="/backend/js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="/backend/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+
+    <!-- EayPIE -->
+    <script src="/backend/js/plugins/easypiechart/jquery.easypiechart.js"></script>
+
+    <!-- Sparkline -->
+    <script src="/backend/js/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- Sparkline demo data  -->
+    <script src="/backend/js/demo/sparkline-demo.js"></script>
+
+    <script src="/backend/js/plugins/chartist/chartist.min.js"></script>
+
+    <script src="/backend/js/plugins/chartJs/Chart.min.js"></script>
 
 
-                    var options = {
-                        xaxis: {
-                            mode: "time",
-                            tickSize: [3, "day"],
-                            tickLength: 0,
-                            axisLabel: "Date",
-                            axisLabelUseCanvas: true,
-                            axisLabelFontSizePixels: 12,
-                            axisLabelFontFamily: 'Arial',
-                            axisLabelPadding: 10,
-                            color: "#d5d5d5"
-                        },
-                        yaxes: [{
-                            position: "left",
-                            max: 1070,
-                            color: "#d5d5d5",
-                            axisLabelUseCanvas: true,
-                            axisLabelFontSizePixels: 12,
-                            axisLabelFontFamily: 'Arial',
-                            axisLabelPadding: 3
-                        }, {
-                            position: "right",
-                            clolor: "#d5d5d5",
-                            axisLabelUseCanvas: true,
-                            axisLabelFontSizePixels: 12,
-                            axisLabelFontFamily: ' Arial',
-                            axisLabelPadding: 67
-                        }
-                        ],
-                        legend: {
-                            noColumns: 1,
-                            labelBoxBorderColor: "#000000",
-                            position: "nw"
-                        },
-                        grid: {
-                            hoverable: false,
-                            borderWidth: 0
-                        }
-                    };
+    <script>
+        $(document).ready(function () {
 
-                    function gd(year, month, day) {
-                        return new Date(year, month - 1, day).getTime();
+
+            var mapData = {
+
+                @foreach($harita as $h)
+                <?php $j = 0; ?>
+                "{{$h[0]}}": {{$h[1]}},
+                @endforeach
+
+            };
+
+            $('#world-map').vectorMap({
+                map: 'world_mill_en',
+                backgroundColor: "transparent",
+                regionStyle: {
+                    initial: {
+                        fill: '#e4e4e4',
+                        "fill-opacity": 0.9,
+                        stroke: 'none',
+                        "stroke-width": 0,
+                        "stroke-opacity": 0
                     }
+                },
 
-                    var previousPoint = null, previousLabel = null;
+                series: {
+                    regions: [{
+                        values: mapData,
+                        scale: ["#1ab394", "#22d6b1"],
+                        normalizeFunction: 'polynomial'
+                    }]
+                },
+            });
+        });
+    </script>
 
-                    $.plot($("#flot-dashboard-chart"), dataset, options);
 
-                    var mapData = {
-                        "US": 298,
-                        "SA": 200,
-                        "DE": 220,
-                        "FR": 540,
-                        "CN": 120,
-                        "AU": 760,
-                        "BR": 550,
-                        "IN": 200,
-                        "GB": 120,
-                    };
 
-                    $('#world-map').vectorMap({
-                        map: 'world_mill_en',
-                        backgroundColor: "transparent",
-                        regionStyle: {
-                            initial: {
-                                fill: '#e4e4e4',
-                                "fill-opacity": 0.9,
-                                stroke: 'none',
-                                "stroke-width": 0,
-                                "stroke-opacity": 0
-                            }
-                        },
+    <script>
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+        $(document).ready(function () {
 
-                        series: {
-                            regions: [{
-                                values: mapData,
-                                scale: ["#1ab394", "#22d6b1"],
-                                normalizeFunction: 'polynomial'
-                            }]
-                        },
-                    });
-                });
-            </script>
 
-            <script>
-                $(function () {
-                    var barOptions = {
-                        series: {
-                            bars: {
-                                show: true,
-                                barWidth: 0.6,
-                                fill: true,
-                                fillColor: {
-                                    colors: [{
-                                        opacity: 0.8
-                                    }, {
-                                        opacity: 0.8
-                                    }]
-                                }
-                            }
-                        },
-                        xaxis: {
-                            tickDecimals: 0
-                        },
-                        colors: ["#1ab394"],
-                        grid: {
-                            color: "#999999",
-                            hoverable: true,
-                            clickable: true,
-                            tickColor: "#D4D4D4",
-                            borderWidth: 0
-                        },
-                        legend: {
-                            show: false
-                        },
-                        tooltip: true,
-                        tooltipOpts: {
-                            content: "x: %x, y: %y"
-                        }
-                    };
-                    var barData = {
-                        label: "bar",
-                        data: [
+            // Simple line
 
-                             /*   @foreach($aylik as $a)
-                            [<?php $s=explode(' ',$a->date);
-                                echo  $s[0];?>,<?=$a->visitors?>
-                            ],
+            new Chartist.Line('#ct-chart1', {
+                labels: [@foreach($aylik as $a)'<?php $s = explode(' ', $a->date);echo $s[0];?>',@endforeach],
+                series: [
 
-                            @endforeach*/
-                            ['Pazartesi','1']
+                    [@foreach($aylik as $a)<?php echo $a->visitors?>,@endforeach]
 
-                        ]
-                    };
-                    $.plot($("#flot-bar-chart"), [barData], barOptions);
+                ]
+            }, {
+                fullWidth: true,
+                chartPadding: {
+                    right: 40
+                }
+            });
 
-                });
-            </script>
+            var doughnutData = [
+                    @foreach($most_viewed_pages as $a)
+                {
+                    value: <?php echo $a->pageViews;?>,
+                    color: getRandomColor(),
+                    highlight: "#1ab394",
+                    label: "<?php echo $a->url?>"
+                },
+                @endforeach
+            ];
+
+            var doughnutOptions = {
+                segmentShowStroke: true,
+                segmentStrokeColor: "#fff",
+                segmentStrokeWidth: 2,
+                percentageInnerCutout: 45, // This is 0 for Pie charts
+                animationSteps: 100,
+                animationEasing: "easeOutBounce",
+                animateRotate: true,
+                animateScale: false,
+                responsive: true,
+            };
+            var ctx = document.getElementById("doughnutChart").getContext("2d");
+            var myNewChart = new Chart(ctx).Doughnut(doughnutData, doughnutOptions);
+
+
+            var doughnutData = [
+                    @foreach($top_browsers as $a)
+                {
+                    value: <?php echo $a->sessions;?>,
+                    color: getRandomColor(),
+                    highlight: "#1ab394",
+                    label: "<?php echo $a->browser?>"
+                },
+                @endforeach
+            ];
+
+            var doughnutOptions = {
+                segmentShowStroke: true,
+                segmentStrokeColor: "#fff",
+                segmentStrokeWidth: 2,
+                percentageInnerCutout: 45, // This is 0 for Pie charts
+                animationSteps: 100,
+                animationEasing: "easeOutBounce",
+                animateRotate: true,
+                animateScale: false,
+                responsive: true,
+            };
+            var ctx = document.getElementById("doughnutChart2").getContext("2d");
+            var myNewChart = new Chart(ctx).Doughnut(doughnutData, doughnutOptions);
+        });
+    </script>
+
 @stop

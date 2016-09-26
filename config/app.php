@@ -182,6 +182,7 @@ return [
          */
         Barryvdh\Debugbar\ServiceProvider::class,
         Spatie\Analytics\AnalyticsServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -233,6 +234,7 @@ return [
          */
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Analytics' => Spatie\Analytics\AnalyticsFacade::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

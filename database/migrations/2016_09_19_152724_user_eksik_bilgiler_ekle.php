@@ -14,15 +14,15 @@ class UserEksikBilgilerEkle extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('surname')->after('name');
-            $table->string('fullname')->after('surname');
+            $table->string('surname')->nullable()->after('name');
+            $table->string('fullname')->nullable()->after('surname');
             $table->boolean('user_type')->after('fullname');
-            $table->string('phone')->after('user_type');
-            $table->integer('il_id')->after('phone');
-            $table->integer('ilce_id')->after('il_id');
+            $table->string('phone')->nullable()->after('user_type');
+            $table->integer('il_id')->nullable()->after('phone');
+            $table->integer('ilce_id')->nullable()->after('il_id');
             $table->boolean('banned')->after('ilce_id');
             $table->boolean('pasif')->after('banned');
-            $table->integer('kredi')->after('pasif');
+            $table->integer('kredi')->nullable()->after('pasif');
             $table->softDeletes();
         });
     }
