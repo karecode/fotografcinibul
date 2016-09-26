@@ -25,5 +25,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', 'Admin\AdminController@get_dashboard');
     Route::get('/dashboard', 'Admin\AdminController@get_dashboard');
     Route::get('/slider-resim-ekle', 'Admin\AdminController@get_sliderResimEkle');
+    Route::post('/slider-resim-ekle', 'Admin\AdminIslemlerController@post_sliderResimEkle');
 });
 

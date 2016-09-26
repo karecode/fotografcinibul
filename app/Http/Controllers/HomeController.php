@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\SliderModel;
 use App\User;
 
 
@@ -35,7 +36,8 @@ class HomeController extends Controller
 
     public function get_index()
     {
-        return view('frontend.pages.anasayfa');
+        $slider=SliderModel::all();
+        return view('frontend.pages.anasayfa')->with('slider',$slider);
     }
 
 
