@@ -478,7 +478,10 @@
     </div><!--container-->
 </div><!--navbar-default-->
 @if($errors->any())
-    <h4>{{$errors->first(1)}}</h4>
+    <div class="alert-danger alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{$errors->first(1)}}
+    </div>
 @endif
 @yield('content')
 <div class="divide60"></div>

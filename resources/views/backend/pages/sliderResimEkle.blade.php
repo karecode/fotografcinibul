@@ -56,6 +56,11 @@
                                     <span class="sr-only">35% Complete (success)</span>
                                 </div>
                             </div>
+                            <div class="progress progress-striped active">
+                                <div style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="75" role="progressbar" class="progress-bar progress-bar-success">
+                                    <span class="sr-only">40% Complete (success)</span>
+                                </div>
+                            </div>
                             <div id="message"></div>
                         </form>
                     </div>
