@@ -8,6 +8,7 @@ use App\User;
 
 use Analytics;
 
+use Carbon\Carbon;
 use Spatie\Analytics\Period;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -36,8 +37,8 @@ class HomeController extends Controller
 
     public function get_index()
     {
-        $slider=SliderModel::all();
-        return view('frontend.pages.anasayfa')->with('slider',$slider);
+        $slider = SliderModel::all();
+        return view('frontend.pages.anasayfa')->with('slider', $slider);
     }
 
 
@@ -45,7 +46,7 @@ class HomeController extends Controller
     {
         $user = User::all();
 
-        foreach ($user as $u)
+        /*foreach ($user as $u)
         {
             Mail::queue('emails.echo', ['user' => $u], function ($m) use ($u) {
 
@@ -53,7 +54,7 @@ class HomeController extends Controller
 
                 $m->to($u->email, $u->name)->subject('Your Reminder!');
             });
-        }
+        }*/
 
     }
 
